@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+  <div class="jumbotron text-center">
+    <h1>Agence exemple</h1>
+    <p>Nous allons découvrir ici le principe de routing et on va chercher à créer nos premières pages. Cela sera l'occasion de passer en revue les différents composants qui permettent au framework de répondre aux requêtes faites par le navigateur.</p>
+  </div>
+
+  <div class="container">
+    <h2>Les derniers biens</h2>
+    <div class="row flex">
+        {% for property in properties %}
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ property.postalCode }}</p>
+                        <div class="text-primary">{{ property.formatPrice }} €</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}
